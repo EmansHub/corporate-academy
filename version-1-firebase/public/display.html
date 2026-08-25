@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses This Week — Corporate Academy</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="display-page">
+
+  <!-- Building watermark — faded, covers full page -->
+  <img src="images/building.jpg" alt="" aria-hidden="true" class="display-watermark" />
+
+  <!-- Scrollable content layer -->
+  <div class="display-content">
+    <button class="btn-back" onclick="history.back()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+
+    <h1 class="display-heading">Courses This Week</h1>
+
+    <p class="display-state" id="state">Loading…</p>
+    <div class="display-grid" id="card-grid"></div>
+  </div>
+
+  <script type="module" src="js/display.js"></script>
+</body>
+</html>

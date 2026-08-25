@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Admins — Corporate Academy</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Redirect to login if not authed (handled in JS) -->
+  <div id="login-view" hidden></div>
+
+  <!-- Page -->
+  <div id="page-view" hidden>
+    <header class="site-header">
+      <span class="brand">Corporate Academy</span>
+      <button class="btn btn-outline btn-sm" id="signout-btn" hidden>Sign Out</button>
+    </header>
+
+    <main class="container">
+      <div class="dash-head">
+        <h1 class="dash-title">Manage Admins</h1>
+        <div class="dash-btns">
+          <button class="btn btn-green btn-sm" id="add-btn">+ Add Admin</button>
+          <a class="btn btn-outline btn-xs" href="admin.html">Manage Courses</a>
+        </div>
+      </div>
+      <p class="muted hint-sm">All registered administrators. Add, edit, or remove access here.</p>
+      <div id="admin-list" class="stack"></div>
+    </main>
+  </div>
+
+  <!-- Dialog -->
+  <dialog id="admin-dialog" class="dialog">
+    <h2 id="dialog-title">Add Admin</h2>
+
+    <label class="field-label">Name
+      <input id="name-input" type="text" placeholder="User Name" />
+    </label>
+    <label class="field-label">Email
+      <input id="email-input" type="email" placeholder="userEmail@gmail.com" />
+    </label>
+    <label class="field-label">Department
+      <select id="dept-select"></select>
+    </label>
+
+    <p class="error" id="form-error"></p>
+    <div class="dialog-actions">
+      <button class="btn btn-outline btn-sm" id="cancel-btn">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="save-btn">Add Admin</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="js/admins.js"></script>
+</body>
+</html>

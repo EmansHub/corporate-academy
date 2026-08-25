@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Corporate Academy</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Dashboard -->
+  <div id="dash-view">
+    <header class="site-header">
+      <span class="brand">Corporate Academy</span>
+      <button class="btn btn-outline btn-sm" id="signout-btn" hidden>Sign Out</button>
+    </header>
+
+    <main class="container">
+      <div class="dash-head">
+        <h1 class="dash-title">Course Dashboard</h1>
+        <div class="dash-btns">
+          <button class="btn btn-green btn-sm" id="add-btn">+ Add Course</button>
+          <a class="btn btn-outline btn-xs" href="admins.html">Manage Admins</a>
+        </div>
+      </div>
+      <p class="muted hint-sm">All departments shown. You can only edit your department's courses.</p>
+      <div id="course-list" class="stack"></div>
+    </main>
+  </div>
+
+  <!-- Dialog -->
+  <dialog id="course-dialog" class="dialog">
+    <h2 id="dialog-title">Add Course</h2>
+
+    <div id="paste-section">
+      <label class="field-label">Paste from Excel</label>
+      <p class="hint">Columns: Course Name · Start Date · End Date · Instructor · Room</p>
+      <textarea id="paste-area" rows="2" placeholder="Click here and paste (Ctrl+V / ⌘V)…"></textarea>
+    </div>
+
+    <div id="preview-section" hidden>
+      <table class="preview-table">
+        <thead><tr><th>Course Name</th><th>Start</th><th>End</th><th>Room</th><th></th></tr></thead>
+        <tbody id="preview-body"></tbody>
+      </table>
+    </div>
+
+    <div id="manual-section">
+      <div class="or-divider"><hr/><span>or fill manually</span><hr/></div>
+      <label class="field-label">Course Name<select id="name-select"></select></label>
+      <input id="name-other" type="text" placeholder="Enter course name" hidden />
+      <label class="field-label">Department
+        <!-- Shown for regular admins -->
+        <input id="dept-input" type="text" readonly />
+        <!-- Shown only when admin department is 'Other' -->
+        <select id="dept-select" hidden>
+          <option value="" disabled selected>Select department…</option>
+          <option value="Department A">SDU</option>
+          <option value="Department B">DSU</option>
+        </select>
+      </label>
+      <label class="field-label">
+        Instructor
+        <input id="instructor-input" type="text" placeholder="Enter instructor name" />
+      </label>
+      <label class="field-label">Room<select id="room-select"></select></label>
+      <input id="room-other" type="text" placeholder="Enter room" hidden />
+      <div class="grid2">
+        <label class="field-label">Start Date<input id="start-input" type="date" /></label>
+        <label class="field-label">End Date<input id="end-input" type="date" /></label>
+      </div>
+    </div>
+
+    <p class="error" id="form-error"></p>
+    <div class="dialog-actions">
+      <button class="btn btn-outline btn-sm" id="cancel-btn">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="save-btn">Add Course</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

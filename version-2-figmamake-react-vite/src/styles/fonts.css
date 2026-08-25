@@ -1,0 +1,4 @@
+/* Brand typography: Trebuchet MS with Segoe UI fallback (system fonts). */
+:root {
+  --font-sans: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
+}

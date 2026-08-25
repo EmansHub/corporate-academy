@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{email} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    match /courses/{courseId} {
+      allow read: if true;
+
+      // Allow creation if Admin's department matches OR Admin is 'Other'
+      allow create: if isAdmin()
+        && request.resource.data.createdBy == request.auth.token.email
+        && (request.resource.data.department == adminDept() || adminDept() == 'Other');
+
+      // Allow updates if Admin's department matches OR Admin is 'Other'
+      allow update: if isAdmin()
+        && (resource.data.department == adminDept() || adminDept() == 'Other');
+
+      // Allow deletion if Admin's department matches OR Admin is 'Other' OR the course is already expired
+      allow delete: if isAdmin()
+        && (resource.data.department == adminDept() || adminDept() == 'Other' || resource.data.endDate < request.time);
+    }
+
+    // New collection rules to track the daily cleanup date
+    match /system/{documentId} {
+      allow read, write: if isAdmin();
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/users/$(request.auth.token.email))
+    }
+    function adminDept() {
+      return get(/databases/$(database)/documents/users/$(request.auth.token.email)).data.department
+    }
+  }
+}
